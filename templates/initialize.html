@@ -15,6 +15,18 @@
 
 {% block content %}
     <div>
+        {% if min %}
+            {{ min }}
+        {% endif %}
+        {% if max %}
+            {{ max }}
+        {% endif %}
+        {% if cur %}
+            {{ cur }}
+        {% endif %}
+    </div>
+
+    <div>
         <form action="{{ url_for('initialize') }}" method="POST">
             {{ controlForm.value }}
             {{ controlForm.submitUp }}

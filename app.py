@@ -46,30 +46,43 @@ def home():
 @app.route("/control", methods=["GET", "POST"])
 def control():
     controlForm = ControlForm()
+    min = getMin()
+    max = getMax()
+    cur = getCur()
 
     if request.method == "POST":
         if controlForm.submitUp.data and controlForm.value.data:
             print("UP")
+
             value = controlForm.value.data
+
             blindsUp(value)
-            controlForm.submitUp.data = False
-            controlForm.submitDown.data = False
-        elif controlForm.submitDown.data and controlForm.value.data:
-            print("DOWN")
-            value = controlForm.value.data
-            blindsDown(value)
+
             controlForm.submitUp.data = False
             controlForm.submitDown.data = False
 
-    return render_template("control.html", controlForm=controlForm)
+            cur = getCur()
+        elif controlForm.submitDown.data and controlForm.value.data:
+            print("DOWN")
+
+            value = controlForm.value.data
+
+            blindsDown(value)
+
+            controlForm.submitUp.data = False
+            controlForm.submitDown.data = False
+
+            cur = getCur()
+
+    return render_template("control.html", controlForm=controlForm, min=min, max=max, cur=cur)
 
 @app.route("/initialize", methods=['GET', 'POST'])
 def initialize():
     controlForm = ControlForm()
     initForm = InitForm()
-    min = None
-    max = None
-    cur = None
+    min = getMin()
+    max = getMax()
+    cur = getCur()
 
     if request.method == "POST":
         if controlForm.submitUp.data and controlForm.value.data:
