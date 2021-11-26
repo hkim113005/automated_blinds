@@ -130,11 +130,11 @@ def initialize():
 
             print("MAX")
         elif initForm.submitRst.data:
-            min = None
-            max = None
-            cur = None
-
             reset()
+
+            min = getMin()
+            max = getMax()
+            cur = getCur()
 
             print("RST")
 

@@ -55,14 +55,23 @@ def updateLog():
 
 def getMin():
     loadLog()
+
+    if min == inf:
+        return None
+
     return blindMin
 
 def getMax():
     loadLog()
+
+    if max == inf:
+        return None
+
     return blindMax
 
 def getCur():
     loadLog()
+
     return blindCur
     
 def blindsUp(v=None):
