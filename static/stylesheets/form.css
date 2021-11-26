@@ -1,0 +1,21 @@
+#going-up-submit {
+    background-image: url('/arrow-up.png');
+    background-size: cover;
+    background-color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    color: transparent;
+}
+
+#going-down-submit {
+    background-image: url('/arrow-down.png');
+    background-size: cover;
+    background-color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    color: transparent;
+}

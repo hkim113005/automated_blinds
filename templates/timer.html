@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Automatic blind</title>
+    <link rel="stylesheet" href="static/stylesheets/navbar.css">
+    <link rel="stylesheet" href="static/stylesheets/text.css">
+    <link rel="stylesheet" href="static/stylesheets/form.css">
+</head>
+
+<body>
+    <ul class="nav">
+        <li class="nav"><a href="/" class="nav">Home</a></li>
+        <li class="nav"><a href="/initialize" class="nav">Initialize</a></li>
+        <li class="nav"><a href="/control" class="nav">Control</a></li>
+        <li class="nav"><a href="/timer" class="nav">Timer</a></li>
+    </ul>
+
+    {% if downTime %}
+        {{ downTime }}
+    {% endif %}
+
+    {% if upTime %}
+        {{ upTime }}
+    {% endif %}
+    
+    <form action="{{ url_for('timer') }}" method="POST">
+        {{ scheduleForm.downTime }}
+        {{ scheduleForm.upTime }}
+        {{ scheduleForm.submitTime }}
+    </form>
+    
+</body>
+
+</html>

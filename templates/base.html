@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="static/stylesheets/navbar.css">
+    <link rel="icon" href="static/assets/favicon.png">
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+    <ul class="nav">
+        <li class="nav"><a href="/"} class="nav">Home</a></li>
+        <li class="nav"><a href="/initialize" class="nav">Initialize</a></li>
+        <li class="nav"><a href="/control" class="nav">Control</a></li>
+        <li class="nav"><a href="/timer" class="nav">Timer</a></li>
+    </ul>
+
+    {% block header %}{% endblock %}
+
+    {% block content %}{% endblock %}
+</body>
+
+</html>
