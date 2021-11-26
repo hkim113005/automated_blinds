@@ -1,19 +1,44 @@
 from functions.blinds import *
 
-blindMin = 0
-blindMax = 200
-blindCur = 100
+log = open("log.txt", "w+")
 
-def blindsUp(v=0):
-    if v == 0 and blindMin and blindMax:
+data = log.readline()
+
+blindMin = None
+blindMax = None
+blindCur = None
+
+mode = 0
+prev = 0
+for i in len(data):
+    if data[i] == " " or data[i] == "\n":
+        if mode == 0:
+            blindMin = int(data[prev:i])
+            prev = i + 1
+            mode += 1
+        elif mode == 1:
+            blindMax = int(data[prev:i])
+            prev = i + 1
+            mode += 1
+        else:
+            blindCur = int(data[prev:i])
+            prev = i + 1
+            mode += 1
+
+def updateLog():
+    newData = str(blindMin) + " " + str(blindMax) + " " + str(blindCur) + "\n"
+    log.write(newData)
+
+def blindsUp(v=None):
+    if not v and blindMin and blindMax:
         return blindsUp(blindMax - blindCur)
 
     up(v)
     
     print("BLINDS UP")
     
-def blindsDown(v=0):
-    if v == 0 and blindMin and blindMax:
+def blindsDown(v=None):
+    if not v and blindMin and blindMax:
         return blindsUp(blindCur - blindMin)
 
     down(v)
@@ -36,6 +61,8 @@ def setMin():
             blindMin = 0
             blindCur = 0
 
+    updateLog()
+
 def setMax():
     global blindMin, blindMax, blindCur
 
@@ -51,9 +78,13 @@ def setMax():
             blindMin = 0
             blindCur = blindMax
 
+    updateLog()
+
 def reset():
     global blindMin, blindMax, blindCur
     
     blindMin = None
     blindMax = None
     blindCur = 0
+
+log.close()
