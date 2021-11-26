@@ -67,42 +67,65 @@ def control():
 def initialize():
     controlForm = ControlForm()
     initForm = InitForm()
-    error = None
+    min = None
+    max = None
+    cur = None
 
     if request.method == "POST":
         if controlForm.submitUp.data and controlForm.value.data:
             print("UP")
+
             value = controlForm.value.data
+
             blindsUp(value)
+
             controlForm.submitUp.data = False
             controlForm.submitDown.data = False
+            
+            min = getMin()
+            max = getMax()
+            cur = getCur()
+
         elif controlForm.submitDown.data and controlForm.value.data:
             print("DOWN")
+
             value = controlForm.value.data
+
             blindsDown(value)
+
             controlForm.submitUp.data = False
             controlForm.submitDown.data = False
 
+            min = getMin()
+            max = getMax()
+            cur = getCur()
+
         if initForm.submitMin.data:
-            if setMin():
-                error = False
-            else:
-                error = True
+            setMin()
+
+            min = getMin()
+            max = getMax()
+            cur = getCur()
 
             print("MIN")
         elif initForm.submitMax.data:
-            if setMax():
-                error = False
-            else:
-                error = True
+            setMax()
+
+            min = getMin()
+            max = getMax()
+            cur = getCur()
 
             print("MAX")
         elif initForm.submitRst.data:
+            min = None
+            max = None
+            cur = None
+
             reset()
 
             print("RST")
 
-    return render_template("initialize.html", controlForm=controlForm, initForm=initForm)
+    return render_template("initialize.html", controlForm=controlForm, initForm=initForm, min=min, max=max, cur=cur)
 
 @app.route("/timer", methods=['GET', 'POST'])
 def timer():

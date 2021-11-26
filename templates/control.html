@@ -15,6 +15,17 @@
 
 {% block content %}
     <div>
+        {% if min %}
+            {{ min }}
+        {% end if %}
+        {% if max %}
+            {{ max }}
+        {% end if %}
+        {% if cur %}
+            {{ cur }}
+        {% end if %}
+    </div>
+    <div>
         <form action="{{ url_for('control') }}" method="POST">
             {{ controlForm.value(class_='value') }}
             {{ controlForm.submitUp }}

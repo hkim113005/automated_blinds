@@ -52,6 +52,18 @@ def updateLog():
     print(blindMin, end = " ")
     print(blindMax, end = " ")
     print(blindCur)
+
+def getMin():
+    loadLog()
+    return blindMin
+
+def getMax():
+    loadLog()
+    return blindMax
+
+def getCur():
+    loadLog()
+    return blindCur
     
 def blindsUp(v=None):
     global blindMin, blindMax, blindCur
