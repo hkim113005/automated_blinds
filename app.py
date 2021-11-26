@@ -120,19 +120,29 @@ def timer():
             print("UT: " + str(upTime))
 
         if scheduleForm.downTime.data and scheduleForm.upTime.data and scheduleForm.submitTime.data: 
-            print("SCHEDULED")
-            
+            print("SCHEDULED_UT")
 
             if downSchedule:           
                 downSchedule.remove()
+                downSchedule = None
+                print("REMOVED_UT")
+
+            downSchedule = scheduler.add_job(blindsDown, 'cron', hour=downTime.hour, minute=downTime.minute)
+
+            scheduleForm.submitTime.data = False
+        
+        if scheduleForm.upTime.data and scheduleForm.submitTime.data:
+            print("SCHEDULED_DT")
 
             if upSchedule:
                 upSchedule.remove()
+                upSchedule = None
+                print("REMOVED")
 
-            downSchedule = scheduler.add_job(blindsDown, 'cron', hour=downTime.hour, minute=downTime.minute)
             upSchedule = scheduler.add_job(blindsUp, 'cron', hour=upTime.hour, minute=upTime.minute)
 
             scheduleForm.submitTime.data = False
+
 
     return render_template("timer.html", scheduleForm=scheduleForm, downTime=downTime, upTime=upTime)
     

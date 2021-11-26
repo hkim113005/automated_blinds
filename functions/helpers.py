@@ -33,9 +33,9 @@ def loadLog():
     log.close()
     
     print("Load: ")
-    print(blindMin)
-    print(blindMax)
-    print(blindCur)
+    print(blindMin, end = " ")
+    print(blindMax, end = " ")
+    print(blindCur, end = " ")
 
 def updateLog():
     global log
@@ -49,9 +49,9 @@ def updateLog():
     log.close()
     
     print("Upload: ")
-    print(blindMin)
-    print(blindMax)
-    print(blindCur)
+    print(blindMin, end = " ")
+    print(blindMax, end = " ")
+    print(blindCur, end = " ")
     
 def blindsUp(v=None):
     global blindMin, blindMax, blindCur
